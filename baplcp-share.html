@@ -18,6 +18,9 @@
 
   <title>BAPLCP 臨打報名系統</title>
 
+  <!-- 預先載入胖貓貓 GIF -->
+  <link rel="preload" as="image" href="https://raw.githubusercontent.com/heydesign01/BAPLCP-Image/refs/heads/main/loading-cat-600.gif" type="image/gif">
+
   <style>
     body {
       margin: 0;
@@ -54,7 +57,8 @@
 </head>
 <body>
 
-  <img src="https://github.com/heydesign01/BAPLCP-Image/blob/main/loading-cat-600.gif?raw=true" 
+  <!-- 顯示預先載入的 GIF -->
+  <img src="https://raw.githubusercontent.com/heydesign01/BAPLCP-Image/refs/heads/main/loading-cat-600.gif" 
        alt="Loading Cat" class="loading-cat">
 
   <div class="progress-bar">
@@ -71,7 +75,6 @@
       progressEl.style.width = progress + '%';
       setTimeout(updateProgress, 80); // 每 0.08 秒更新一次
     } else {
-      // 進度條滿後跳轉
       window.location.href = "https://baplcp-signup.bubbleapps.io/version-test";
     }
   }

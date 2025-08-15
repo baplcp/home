@@ -18,15 +18,67 @@
 
   <title>BAPLCP 臨打報名系統</title>
 
-  <!-- 用 JavaScript 延遲跳轉，避免爬蟲抓不到 Meta -->
-  <script>
-    setTimeout(function(){
-      window.location.href = "https://baplcp-signup.bubbleapps.io/version-test";
-    }, 1000);
-  </script>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(#6a8dff, #859dff);
+      flex-direction: column;
+    }
+
+    .loading-cat {
+      width: 180px; /* 胖貓貓寬度 */
+    }
+
+    .progress-bar {
+      width: 180px; /* 跟胖貓貓同寬 */
+      height: 16px;
+      background: white; /* 白色外框背景 */
+      border-radius: 999px;
+      padding: 3px; /* 白邊距離 */
+      box-sizing: border-box;
+      margin-top: 20px;
+    }
+
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(to right, #4a8dff, #6cc0ff);
+      border-radius: 999px;
+      transition: width 0.15s ease; /* 加快動畫速度 */
+    }
+  </style>
 </head>
 <body>
-  <p>即將跳轉到報名頁面，請稍候...</p>
-  <p><a href="https://baplcp-signup.bubbleapps.io/version-test">如果沒有自動跳轉，請點這裡</a></p>
+
+  <img src="https://github.com/heydesign01/BAPLCP-Image/blob/main/loading-cat-walk.gif?raw=true" 
+       alt="Loading Cat" class="loading-cat">
+
+  <div class="progress-bar">
+    <div class="progress"></div>
+  </div>
+
+<script>
+  let progress = 0;
+  const progressEl = document.querySelector('.progress');
+
+  function updateProgress() {
+    if (progress < 100) {
+      progress += 5; // 每次增加 5%
+      progressEl.style.width = progress + '%';
+      setTimeout(updateProgress, 80); // 每 0.08 秒更新一次
+    } else {
+      // 進度條滿後跳轉
+      window.location.href = "https://baplcp-signup.bubbleapps.io/version-test";
+    }
+  }
+
+  // 延遲一點啟動，確保爬蟲先讀到 meta
+  setTimeout(updateProgress, 300);
+</script>
+
 </body>
 </html>
